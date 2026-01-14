@@ -29,6 +29,11 @@ class Signature
             throw new WebhookSignatureException('Missing required parameters');
         }
 
+        // Validate timestamp is numeric
+        if (is_string($timestamp) && !is_numeric($timestamp)) {
+            throw new WebhookSignatureException('Invalid timestamp');
+        }
+
         $ts = is_string($timestamp) ? (int) $timestamp : $timestamp;
         $now = (int) (microtime(true) * 1000);
         $age = abs($now - $ts) / 1000;
@@ -69,7 +74,11 @@ class Signature
         self::verify($payload, $signature, $timestamp, $secret, $tolerance);
 
         if (is_string($payload)) {
-            return json_decode($payload, true);
+            $decoded = json_decode($payload, true);
+            if ($decoded === null && json_last_error() !== JSON_ERROR_NONE) {
+                throw new WebhookSignatureException('Invalid JSON payload: ' . json_last_error_msg());
+            }
+            return $decoded;
         }
 
         return $payload;
