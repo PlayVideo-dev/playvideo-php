@@ -32,7 +32,7 @@ class HttpClient
     {
         $this->apiKey = $apiKey;
         $this->baseUrl = rtrim($options['baseUrl'] ?? self::DEFAULT_BASE_URL, '/');
-        
+
         $this->client = new Client([
             'base_uri' => $this->baseUrl,
             'timeout' => $options['timeout'] ?? self::DEFAULT_TIMEOUT,
@@ -131,7 +131,7 @@ class HttpClient
                         $data = json_decode(substr($line, 6), true);
                         if ($data !== null) {
                             yield $data;
-                            
+
                             if (in_array($data['stage'] ?? '', ['completed', 'failed', 'timeout'])) {
                                 return;
                             }
@@ -172,7 +172,7 @@ class HttpClient
     private function handleException(RequestException $e): PlayVideoException
     {
         $response = $e->getResponse();
-        
+
         if ($response === null) {
             return new NetworkException("Network error: {$e->getMessage()}");
         }

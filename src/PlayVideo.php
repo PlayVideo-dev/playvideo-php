@@ -26,7 +26,7 @@ use PlayVideo\HttpClient;
 class PlayVideo
 {
     private HttpClient $http;
-    
+
     public readonly Collections $collections;
     public readonly Videos $videos;
     public readonly Webhooks $webhooks;
@@ -48,7 +48,7 @@ class PlayVideo
         }
 
         $this->http = new HttpClient($apiKey, $options);
-        
+
         $this->collections = new Collections($this->http);
         $this->videos = new Videos($this->http);
         $this->webhooks = new Webhooks($this->http);
