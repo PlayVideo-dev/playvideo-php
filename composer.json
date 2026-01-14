@@ -1,0 +1,59 @@
+{
+    "name": "playvideo/playvideo",
+    "description": "Official PlayVideo SDK for PHP - Video hosting for developers",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "playvideo",
+        "video",
+        "streaming",
+        "hls",
+        "transcoding",
+        "video-hosting",
+        "api",
+        "sdk"
+    ],
+    "authors": [
+        {
+            "name": "PlayVideo",
+            "email": "support@playvideo.dev"
+        }
+    ],
+    "homepage": "https://playvideo.dev",
+    "support": {
+        "issues": "https://github.com/PlayVideo-dev/playvideo-php/issues",
+        "source": "https://github.com/PlayVideo-dev/playvideo-php"
+    },
+    "require": {
+        "php": ">=8.1",
+        "guzzlehttp/guzzle": "^7.0",
+        "psr/http-message": "^1.0 || ^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.0",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "PlayVideo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PlayVideo\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpstan": "phpstan analyse src",
+        "cs": "phpcs src --standard=PSR12"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable"
+}
