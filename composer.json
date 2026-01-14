@@ -45,7 +45,7 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
+        "test": "phpunit --configuration phpunit.xml.dist",
         "phpstan": "phpstan analyse src",
         "cs": "phpcs src --standard=PSR12"
     },
